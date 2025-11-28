@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Cadastro de Alunos{% endblock %}
+{% block title %}Cadastro de Professores{% endblock %}
 
 {% block page_content %}
 
 <form action="" method="post" class="form" role="form">
     {{ form.hidden_tag() }}
     <div class="form-group required">
-        <label for="name" class="control-label">Cadastre o novo Aluno:</label>
+        <label for="name" class="control-label">Cadastre o novo Professor:</label>
         {{ form.name(class="form-control") }}
     </div>
 
@@ -23,11 +23,11 @@
 </form>
 
 <div class="page-content">
-    <h2>Relação de alunos cadastrados</h2>
+    <h2>Relação de professores cadastrados</h2>
     <table class="table">
         <thead>
             <tr>
-                <th>Aluno</th>
+                <th>Professor</th>
                 <th>Disciplina</th>
             </tr>
         </thead>
