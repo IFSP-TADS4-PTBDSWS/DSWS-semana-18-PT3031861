@@ -44,7 +44,7 @@ class User(db.Model):
 
 
 class NameForm(FlaskForm):
-    name = StringField('Cadastre o novo Aluno:', validators=[DataRequired()])
+    name = StringField('Cadastre o novo Professor:', validators=[DataRequired()])
     role = SelectField('Disciplina associada:', choices=[
         ('DSWA5', 'DSWA5'),
         ('GPSA5', 'GPSA5'),
@@ -74,13 +74,13 @@ def internal_server_error(e):
 def index():
     return render_template('index.html', current_time=datetime.utcnow())
 
-@app.route('/alunos', methods=['GET', 'POST'])
-def alunos():
+@app.route('/professores', methods=['GET', 'POST'])
+def professores():
     form = NameForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.name.data).first()
         if user:
-            flash('Estudante já existe na base de dados!')
+            flash('Professor já existe na base de dados!')
         else:
             role = Role.query.filter_by(name=form.role.data).first()
             if not role:
@@ -91,9 +91,9 @@ def alunos():
             db.session.add(user)
             db.session.commit()
 
-            flash('Estudante cadastrado com sucesso!')
-        return redirect(url_for('alunos'))
+            flash('Professor cadastrado com sucesso!')
+        return redirect(url_for('professores'))
 
 
     users = User.query.all()
-    return render_template('alunos.html', form=form, users=users)
+    return render_template('professor.html', form=form, users=users)
